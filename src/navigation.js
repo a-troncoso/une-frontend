@@ -1,14 +1,14 @@
-// navigation.js
 import { Navigation } from 'react-native-navigation'
+// import Home from './pages/home/Home';
 
 export const goHome = () => Navigation.setRoot({
   root: {
     stack: {
-      id: 'App',
+      id: 'HomeId',
       children: [
         {
           component: {
-            name: 'Home',
+            name: 'UneFront.Home',
           }
         }
       ]

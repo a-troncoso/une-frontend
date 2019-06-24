@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Alert,
   StyleSheet,
@@ -58,13 +59,11 @@ class Stepper extends Component {
     steps[activeStepIdx].active = false;
 
     let active = this.state.active;
-
     if (activeStepIdx === steps.length - 1) {
       // Si llegamos al paso final, volvemos al primer paso
-      steps[0].active = true;
-      active = steps[0];
-      
-      Alert.alert('Vuelta completa',  'Debería ir al home');
+      // steps[0].active = true;
+      // active = steps[0];
+      this.props.onCompletedSteps();
     }
     else {
       steps[activeStepIdx + 1].active = true;
@@ -127,6 +126,10 @@ class Stepper extends Component {
       </TouchableWithoutFeedback>
     );
   }
+}
+
+Stepper.propTypes = {
+  onCompletedSteps: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({

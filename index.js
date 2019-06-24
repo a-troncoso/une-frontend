@@ -6,6 +6,7 @@ import { registerScreens } from './src/screens';
 
 registerScreens();
 
+
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
     root: {

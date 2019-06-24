@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import Stepper from '../../components/stepper/Stepper';
-import { View, Text, Button } from 'react-native';
+import { View, Alert} from 'react-native';
 import { goHome } from '../../navigation';
 
 class Welcome extends Component {
-
-  goHomeScreen = () => {
+  handleCompletedSteps = () => {
     goHome();
+    // Alert.alert('Vuelta completa',  'Debería ir al home');
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
-        <Stepper></Stepper>
+        <Stepper onCompletedSteps={this.handleCompletedSteps}></Stepper>
       </View>
     );
   }

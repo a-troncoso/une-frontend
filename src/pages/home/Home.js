@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import PlaceCard from '../../components/placeCard/placeCard';
 
 class HomePage extends Component {
   render() {
     return (
-      <View>
-        <Text>This is home page</Text>
+      <View style={{flex: 1}}>
+        <PlaceCard></PlaceCard>
       </View>
     );
   }
