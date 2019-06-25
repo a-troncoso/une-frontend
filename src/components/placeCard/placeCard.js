@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
+import PropTypes from 'prop-types';
 
 class PlaceCard extends Component {
   render() {
@@ -8,19 +9,23 @@ class PlaceCard extends Component {
       <View style={{flex: 1}}>
         <View style={styles.imageContainer}>
           <Image
-            source={{uri: 'https://acustiknoticias.com/wp-content/uploads/2018/12/libros.png'}}
+            source={{uri: this.props.place.imageUrl}}
             style={{ height: 150}} />
-            <Text style={styles.placeName}>feria del libro usado</Text>
+            <Text style={styles.placeName}>{this.props.place.name}</Text>
           </View>
           <View style={styles.infoContainer}>
             <View style={{flex:1}}>
-              <Text>Hoy desde las 11:00 hrs.</Text>
-              <Text>Lastarria 2283 (a 30 mt.)</Text>
-              <Text>23 vendedores</Text>
+              <Text style={{fontSize: 16, color: '#000'}}>
+                Hoy desde las {this.props.place.from} hasta las {this.props.place.to} hrs.
+              </Text>
+              <Text style={{fontSize: 14, color: '#000'}}>{this.props.place.address}</Text>
+              <Text style={{fontSize: 12, color: '#000'}}>
+                {this.props.place.sellersCount} vendedores
+              </Text>
             </View>
             <View style={styles.likes}>
               <Icon name='favorite-border' type="material" />
-              <Text style={{marginLeft: 5}}>23</Text>
+              <Text style={{marginLeft: 5}}>{this.props.place.likes}</Text>
             </View>
           </View>
       </View>
@@ -28,12 +33,17 @@ class PlaceCard extends Component {
   }
 }
 
+PlaceCard.propTypes = {
+  id: PropTypes.string,
+  place: PropTypes.object.isRequired
+}
+
 const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     alignContent: 'flex-end',
     padding: 10,
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: '#d3d3d3'
   },
   imageContainer: {
@@ -42,7 +52,7 @@ const styles = StyleSheet.create({
   placeName: {
     position: 'absolute',
     bottom: 2,
-    left: 5,
+    left: 10,
     color: '#fff',
     fontSize: 25,
     textTransform: 'uppercase',
