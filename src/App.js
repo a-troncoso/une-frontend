@@ -8,7 +8,6 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-// import Stepper from './react/components/stepper/Stepper';
 import Welcome from './pages/welcome/Welcome';
 
 export default class App extends Component {

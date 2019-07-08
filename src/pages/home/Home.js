@@ -42,11 +42,9 @@ const places = [{
 
 class HomePage extends Component {
 
-  getPlaces = () => {
-    return places;
-  }
+  getPlaces = () => places;
 
-  _keyExtractor = (item) => item.id;
+  _keyExtractor = item => item.id;
 
   render() {
     return (
