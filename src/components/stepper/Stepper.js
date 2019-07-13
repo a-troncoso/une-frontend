@@ -56,6 +56,7 @@ class Stepper extends Component {
   nextStep = () => {
     let steps = this.state.steps;
     let activeStepIdx = steps.findIndex(step => !!step.active);
+    
     steps[activeStepIdx].active = false;
 
     let active = this.state.active;

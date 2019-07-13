@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
 import Stepper from '../../components/stepper/Stepper';
 import { View, Alert} from 'react-native';
-import { goHome } from '../../navigation';
+import { Navigation} from 'react-native-navigation';
+import PropTypes from 'prop-types';
 
 class Welcome extends Component {
-  handleCompletedSteps = () => {
-    goHome();
+  static propTypes = {
+    navigator: PropTypes.object,
+    componentId: PropTypes.string
+  };
+
+  constructor(props) {
+    super(props);
+  }
+
+  handleCompletedSteps = async () => {
+    try {
+      await Navigation.push('MainStack', {
+        component: {
+          id: 'HomeScreen',
+          name: 'UneFront.Home'
+        }
+      })
+    } catch (error) {
+      console.log('[ERROR]', error);
+    }
+    
     // Alert.alert('Vuelta completa',  'Debería ir al home');
   }
 
