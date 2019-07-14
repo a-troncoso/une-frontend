@@ -9,6 +9,7 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 
 const steps = [{
   id: 1,
@@ -36,7 +37,7 @@ class Stepper extends Component {
 
   componentDidMount() {
     // Set first step as active
-    let steps = this.state.steps;
+    let { steps } = this.state;
     steps[0].active = true;
 
     this.setState({
@@ -54,19 +55,30 @@ class Stepper extends Component {
   }
 
   nextStep = () => {
-    let steps = this.state.steps;
+    let { steps, active} = this.state;
     let activeStepIdx = steps.findIndex(step => !!step.active);
     
     steps[activeStepIdx].active = false;
 
-    let active = this.state.active;
     if (activeStepIdx === steps.length - 1) {
-      // Si llegamos al paso final, volvemos al primer paso
-      // steps[0].active = true;
-      // active = steps[0];
-      this.props.onCompletedSteps();
+      // Si estamos en el último paso,
+      // activamos el primer paso y luego enviamos evento de pasos completados
+      
+      /**
+        FIXME: mejorar esta lógica ya que antes de ir a la sgte vista
+        salta al primer paso
+      */
+      steps[0].active = true;
+      active = steps[0];
+      this.setState({
+        steps,
+        active
+      }, () => {
+        this.props.onCompletedSteps();
+      })
     }
     else {
+      // Pasamos al paso siguiente
       steps[activeStepIdx + 1].active = true;
       active = steps[activeStepIdx + 1];
     }

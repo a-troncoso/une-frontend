@@ -7,11 +7,13 @@ import Home from './pages/home/Home';
 import Welcome from './pages/welcome/Welcome';
 import Places from './pages/places/Places';
 import Sellers from './pages/sellers/Sellers';
+import PlaceInformation from './pages/place-information/PlaceInformation';
 
 export function registerScreens() {
-  Navigation.registerComponent('UneFront.App', () => (App));
-  Navigation.registerComponent('UneFront.Home', () => (Home));
-  Navigation.registerComponent('UneFront.Welcome', () => (Welcome));
-  Navigation.registerComponent('UneFront.Places', () => (Places));
-  Navigation.registerComponent('UneFront.Sellers', () => (Sellers));
+  Navigation.registerComponent('UneFront.App', () => gestureHandlerRootHOC(App));
+  Navigation.registerComponent('UneFront.Home', () => gestureHandlerRootHOC(Home));
+  Navigation.registerComponent('UneFront.Welcome', () => gestureHandlerRootHOC(Welcome));
+  Navigation.registerComponent('UneFront.Places', () => gestureHandlerRootHOC(Places));
+  Navigation.registerComponent('UneFront.Sellers', () => gestureHandlerRootHOC(Sellers));
+  Navigation.registerComponent('UneFront.PlaceInformation', () => gestureHandlerRootHOC(PlaceInformation));
 }

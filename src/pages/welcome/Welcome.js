@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Stepper from '../../components/stepper/Stepper';
-import { View, Alert} from 'react-native';
+import { View } from 'react-native';
 import { Navigation} from 'react-native-navigation';
 import PropTypes from 'prop-types';
 
@@ -12,21 +12,62 @@ class Welcome extends Component {
 
   constructor(props) {
     super(props);
+    this.navigationEventListener = Navigation.events().bindComponent(this, 'UneFront.Welcome');
   }
+
+  componentDidMount() { 
+    console.log('<<< Welcome componentDidMount >>>');
+  }
+
+  componentWillUnmount() {
+    console.log('<<< Welcome componentWillUnmount >>>');
+  }
+
+  componentDidAppear() {
+    console.log('<<< Welcome componentDidAppear >>>');
+  }
+
+  componentDidDisappear() {
+    console.log('<<< Welcome componentDidDisappear >>>');
+  }
+  
 
   handleCompletedSteps = async () => {
     try {
       await Navigation.push('MainStack', {
-        component: {
-          id: 'HomeScreen',
-          name: 'UneFront.Home'
+        bottomTabs: {
+          children: [{
+            component: {
+              name: 'UneFront.Places',
+              options: {
+                bottomTab: {
+                  text: 'Lugares',
+                  icon: require('../../assets/img/tab1.png')
+                }
+              }
+            }
+          }, {
+            component: {
+              name: 'UneFront.Sellers',
+              options: {
+                bottomTab: {
+                  text: 'Vendedores',
+                  icon: require('../../assets/img/tab1.png')
+                }
+              }
+            }
+          }],
+          options: {
+            topBar: {
+              drawBehind: true,
+              visible: false
+            }
+          }
         }
       })
     } catch (error) {
-      console.log('[ERROR]', error);
+      console.log('[ERROR: Navigation.push(...)]', error);
     }
-    
-    // Alert.alert('Vuelta completa',  'Debería ir al home');
   }
 
   render() {
