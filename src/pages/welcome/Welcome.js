@@ -56,6 +56,26 @@ class Welcome extends Component {
                 }
               }
             }
+          }, {
+            component: {
+              name: 'UneFront.Search',
+              options: {
+                bottomTab: {
+                  text: 'Buscar',
+                  icon: require('../../assets/img/tab1.png')
+                }
+              }
+            }
+          }, {
+            component: {
+              name: 'UneFront.Profile',
+              options: {
+                bottomTab: {
+                  text: 'Perfil',
+                  icon: require('../../assets/img/tab1.png')
+                }
+              }
+            }
           }],
           options: {
             topBar: {

@@ -10,24 +10,25 @@ class PlaceCard extends Component {
         <View style={styles.imageContainer}>
           <Image
             source={{uri: this.props.place.imageUrl}}
-            style={{ height: 150}} />
-            <Text style={styles.placeName}>{this.props.place.name}</Text>
+            style={{ height: 150}}
+          />
+          <Text style={styles.placeName}>{this.props.place.name}</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <View style={{flex:1}}>
+            <Text style={{fontSize: 16, color: '#000'}}>
+              Hoy desde las {this.props.place.from} hasta las {this.props.place.to} hrs.
+            </Text>
+            <Text style={{fontSize: 14, color: '#000'}}>{this.props.place.address}</Text>
+            <Text style={{fontSize: 12, color: '#000'}}>
+              {this.props.place.sellersCount} vendedores
+            </Text>
           </View>
-          <View style={styles.infoContainer}>
-            <View style={{flex:1}}>
-              <Text style={{fontSize: 16, color: '#000'}}>
-                Hoy desde las {this.props.place.from} hasta las {this.props.place.to} hrs.
-              </Text>
-              <Text style={{fontSize: 14, color: '#000'}}>{this.props.place.address}</Text>
-              <Text style={{fontSize: 12, color: '#000'}}>
-                {this.props.place.sellersCount} vendedores
-              </Text>
-            </View>
-            <View style={styles.likes}>
-              <Icon name='favorite-border' type="material" />
-              <Text style={{marginLeft: 5}}>{this.props.place.likes}</Text>
-            </View>
+          <View style={styles.likes}>
+            <Icon name='favorite-border' type="material" />
+            <Text style={{marginLeft: 5}}>{this.props.place.likes}</Text>
           </View>
+        </View>
       </View>
     );
   }

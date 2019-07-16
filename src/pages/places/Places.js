@@ -47,33 +47,23 @@ class PlacesPage extends Component {
 
   _keyExtractor = item => item.id;
 
+  _renderItem = ({item}) => {
+    return (
+      <View style={{flex: 1, margin: 5}}>
+        <TouchableOpacity activeOpacity={0.7} onPress={() => this._onPressPlace(item)}>
+          <PlaceCard id={item.id} place={item} />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
   _onPressPlace = place => {
     Navigation.push('MainStack', {
-      bottomTabs: {
-        children: [{
-          component: {
-            name: 'UneFront.PlaceInformation',
-            options: {
-              bottomTab: {
-                text: 'Información',
-                icon: require('../../assets/img/tab1.png')
-              }
-            },
-            passProps: {
-              place
-            }
-          }
-        }, {
-          component: {
-            name: 'UneFront.Sellers',
-            options: {
-              bottomTab: {
-                text: 'Vendedores',
-                icon: require('../../assets/img/tab1.png')
-              }
-            }
-          }
-        }]
+      component: {
+        name: 'UneFront.PlaceInformation',
+        passProps: {
+          place
+        }
       }
     })
   }
@@ -82,14 +72,9 @@ class PlacesPage extends Component {
     return (
       <View style={{flex: 1}}>
         <FlatList
+          style={{flex: 1}}
           data={this.getPlaces()}
-          renderItem={({item}) => (
-            <View>
-              <TouchableOpacity activeOpacity={0.7} onPress={() => this._onPressPlace(item)}>
-                <PlaceCard id={item.id} place={item} />
-              </TouchableOpacity>
-            </View>
-          )}
+          renderItem={this._renderItem}
           keyExtractor={this._keyExtractor}
         />
       </View>
