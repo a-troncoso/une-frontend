@@ -11,7 +11,10 @@ const places = [{
   to: '17:00',
   address: 'lastarria #2283 (a 30 mt.)',
   sellersCount: 23,
-  likes: 18
+  likes: 18,
+  description: 'Bienvenidos',
+  lat: -33.4308119,
+  long: -70.6843836
 }, {
   id: '2',
   imageUrl: 'https://cdn.mindful.org/Meditation_Goleman.jpg',
@@ -20,7 +23,10 @@ const places = [{
   to: '17:00',
   address: 'avda. apoquindo #2283 (a 30 mt.)',
   sellersCount: 11,
-  likes: 10
+  likes: 10,
+  description: 'Bienvenidos',
+  lat: -33.430654,
+  long: -70.685543
 }, {
   id: '3',
   imageUrl: 'http://www.perpetualpc.com.au/c/wp-content/uploads/2012/07/sustainability.jpg',
@@ -29,7 +35,10 @@ const places = [{
   to: '17:00',
   address: 'pedro de valdivia #2283 (a 30 mt.)',
   sellersCount: 8,
-  likes: 3
+  likes: 3,
+  description: 'Bienvenidos',
+  lat: -33.431497,
+  long: -70.685128
 }, {
   id: '4',
   imageUrl: 'https://acustiknoticias.com/wp-content/uploads/2018/12/libros.png',
@@ -38,7 +47,10 @@ const places = [{
   to: '17:00',
   address: 'lastarria #2283 (a 30 mt.)',
   sellersCount: 23,
-  likes: 18
+  likes: 18,
+  description: 'Bienvenidos',
+  lat: -33.428169,
+  long: -70.685832
 }];
 
 class PlacesPage extends Component {

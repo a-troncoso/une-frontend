@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableHighlight, StyleSheet } from 'react-native';
 import PlaceDetail from '../../components/place-detail/PlaceDetail';
-import SellersPage from '../sellers/Sellers';
+import SellersList from '../../components/sellers-list/SellersList';
+
+const tabTypes = {
+  INFORMATION: 'information',
+  SELLERS: 'sellers'
+};
+
+const tabs = [{
+  name: tabTypes.INFORMATION,
+  label: 'Información'
+}, {
+  name: tabTypes.SELLERS,
+  label: 'Vendedores'
+}];
 
 class PlaceInformation extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeTab: 'information'
+      activeTab: tabTypes.INFORMATION
     }
   }
+
+  getTabs = () => tabs;
 
   _handleChangeTab = tabName => {
     this.setState({ activeTab: tabName })
@@ -20,7 +35,7 @@ class PlaceInformation extends Component {
     const { activeTab } = this.state;
 
     return (
-      <View>
+      <View style={{flex: 1}}>
         <View style={styles.header}>
           <Image
             source={{uri: this.props.place.imageUrl}}
@@ -30,40 +45,28 @@ class PlaceInformation extends Component {
         </View>
         <View style={styles.body}>
           <View style={styles.tabsContainer}>
-            <View style={styles.tabView}>
-              <TouchableHighlight
-                activeOpacity={0.95}
-                underlayColor={'#e3e3e3'}
-                onPress={() => this._handleChangeTab('information')}>
-                <Text
-                  style={[
-                    styles.textCenterd,
-                    activeTab === 'information' ? styles.textUnderlined : '',
-                    styles.tabText
-                  ]}
-                >Información</Text>
-              </TouchableHighlight>
-            </View>
-            <View style={styles.tabView}>
-              <TouchableHighlight
-                activeOpacity={0.95}
-                underlayColor={'#e3e3e3'}
-                onPress={() => this._handleChangeTab('sellers')}>
-                <Text
-                  style={[
-                    styles.textCenterd,
-                    activeTab === 'sellers' ? styles.textUnderlined : '',
-                    styles.tabText
-                  ]}
-                >Vendedores</Text>
-              </TouchableHighlight>
-            </View>
+            { tabs.map((t, idx) => 
+              <View style={styles.tabView} key={idx}>
+                <TouchableHighlight
+                  activeOpacity={0.95}
+                  underlayColor={'#e3e3e3'}
+                  onPress={() => this._handleChangeTab(t.name)}>
+                  <Text
+                    style={[
+                      styles.textCenterd,
+                      activeTab === t.name ? styles.textUnderlined : '',
+                      styles.tabText
+                    ]}
+                  >{ t.label }</Text>
+                </TouchableHighlight>
+              </View>
+            ) }
           </View>
           <View style={styles.dynamicContent}>
-            { activeTab === 'information' ? (
-              <PlaceDetail></PlaceDetail>
+            { activeTab === tabTypes.INFORMATION ? (
+              <PlaceDetail place={this.props.place}></PlaceDetail>
             ) : (
-              <SellersPage></SellersPage>
+              <SellersList></SellersList>
             ) }
           </View>
         </View>
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 10
   },
   body: {
+    flex: 1,
     paddingLeft: 5,
     paddingRight: 5,
     paddingTop: 10
@@ -118,6 +122,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15
   },
   dynamicContent: {
+    flex: 1,
     paddingTop: 10
   }
 });
